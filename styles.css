@@ -1,0 +1,191 @@
+
+/* =====================================================
+   Tuition Centre Website — styles.css
+   ===================================================== */
+
+/* --------------------
+   CSS VARIABLES (Theme)
+   -------------------- */
+:root {
+  --accent: #0b6e4f;     /* primary brand color */
+  --accent-2: #06a77d;   /* secondary accent */
+  --muted: #6b7280;      /* muted text color */
+  --bg: #f7fafc;         /* page background */
+  --card-bg: #ffffff;    /* card background */
+  --radius: 10px;        /* global border radius */
+  --max-width: 1000px;   /* content width */
+  --gap: 12px;           /* default gap used in grids */
+  --shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* --------------------
+   RESET / BASE STYLES
+   -------------------- */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: #111827;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove default image gaps and make images responsive */
+img { display: block; max-width: 100%; height: auto; }
+
+/* Container to center page content */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* --------------------
+   TYPOGRAPHY
+   -------------------- */
+h1, h2, h3, h4 { margin: 0 0 12px 0; line-height: 1.2; }
+h1 { font-size: 1.9rem; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1rem; }
+p { margin: 0 0 12px 0; color: var(--muted); }
+
+/* small helper text */
+.small { font-size: 0.9rem; color: var(--muted); }
+
+/* --------------------
+   LAYOUT: HEADER / NAV
+   -------------------- */
+header {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: white;
+  padding: 16px 12px;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand .logo { width: 48px; height: 48px; border-radius: 8px; overflow: hidden; background: rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; }
+
+.navlinks { display: flex; gap: 12px; align-items: center; }
+.navlinks a {
+  color: white;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+.navlinks a:hover { background: rgba(255,255,255,0.06); }
+
+/* Mobile nav hint (hid the mobile menu UI for now) */
+.nav-toggle { display: none; }
+
+/* --------------------
+   MAIN / SECTIONS
+   -------------------- */
+main { padding: 24px 0; }
+
+section {
+  background: var(--card-bg);
+  padding: 18px;
+  margin-bottom: 14px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* Hero layout: left content + right card */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  align-items: center;
+}
+.hero h1 { font-size: 2rem; margin-bottom: 6px; }
+
+/* Quick facts card */
+.card { background: var(--card-bg); padding: 14px; border-radius: 10px; box-shadow: var(--shadow); }
+
+/* CTA buttons */
+.btn {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.btn-primary { background: var(--accent); color: white; }
+.btn-outline { border: 2px solid var(--accent); color: var(--accent); background: transparent; }
+
+/* --------------------
+   GRID / CARDS / CONTENT BLOCKS
+   -------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+
+.course { padding: 12px; background: #fbfffd; border-radius: 8px; }
+
+.faculty-list { display: flex; flex-direction: column; gap: 12px; }
+
+.teacher {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.teacher img { width: 64px; height: 64px; border-radius: 8px; object-fit: cover; }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.gallery img { width: 100%; height: 160px; object-fit: cover; border-radius: 6px; }
+
+/* --------------------
+   FOOTER
+   -------------------- */
+footer {
+  padding: 12px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 8px;
+}
+
+/* --------------------
+   UTILITIES 
+   -------------------- */
+
+/* Muted text color */
+.muted { color: var(--muted); }
+
+/* Simple responsive image card */
+.img-card { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); background: var(--card-bg); }
+
+/* --------------------
+   RESPONSIVE BREAKPOINTS
+   -------------------- */
+/* Tablet and narrow screens */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+  .hero h1 { font-size: 1.6rem; }
+}
+
+/* Mobile phones */
+@media (max-width: 560px) {
+  .navlinks { display: none; } /* you can explain the mobile menu replacement later */
+  .grid { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: 1fr; }
+  .gallery img { height: 180px; }
+  .hero h1 { font-size: 1.4rem; }
+  .container { padding: 0 10px; }
+}
+
+/* End of stylesheet */
